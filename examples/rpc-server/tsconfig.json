@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/tsconfig",
-    "extends": "./node_modules/@loopback/build/config/tsconfig.common.json",
-    "include": [
+  "extends": "./node_modules/@loopback/build/config/tsconfig.common.json",
+  "include": [
     "src",
     "test",
     "index.ts"
@@ -10,5 +10,21 @@
     "node_modules/**",
     "packages/*/node_modules/**",
     "**/*.d.ts"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "target": "es2017",
+    "outDir": "dist"
+  },
+  "references": [
+    {
+      "path": "../../packages/testlab/tsconfig.json"
+    },
+    {
+      "path": "../../packages/context/tsconfig.json"
+    },
+    {
+      "path": "../../packages/core/tsconfig.json"
+    }
   ]
 }

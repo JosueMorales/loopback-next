@@ -25,15 +25,27 @@ function checkNodeVersion(range) {
   }
 }
 
+/**
+ * Get name of the distribution based on current node versions
+ */
 function getDist() {
   checkNodeVersion();
+  /*
   const nodeMajorVersion = +process.versions.node.split('.')[0];
-  return nodeMajorVersion >= 10 ? './dist10' : './dist8';
+  return nodeMajorVersion >= 10 ? './dist' : './dist';
+  */
+  return 'dist';
 }
 
-function loadDist(projectRootDir) {
-  const dist = getDist();
-  return require(path.join(projectRootDir, dist));
+/**
+ * Load distribution for the given project and name
+ * @param {string} projectRootDir Root directory of the project
+ * @param {string} dist Optional name of the distribution
+ */
+function loadDist(projectRootDir, dist) {
+  dist = dist || getDist();
+  const distDir = path.join(projectRootDir, dist);
+  return require(distDir);
 }
 
 module.exports = {getDist, loadDist, checkNodeVersion};
